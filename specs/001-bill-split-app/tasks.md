@@ -33,18 +33,18 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T006 Implement base `Failure` classes (ServerFailure, CacheFailure, NetworkFailure, ValidationFailure) in `lib/core/error/failures.dart`
-- [ ] T007 [P] Implement base `Exception` classes (ServerException, CacheException) in `lib/core/error/exceptions.dart`
-- [ ] T008 [P] Implement `UseCase<Type, Params>` abstract class with `Either<Failure, Type>` return in `lib/core/usecases/usecase.dart`
-- [ ] T009 [P] Implement `NetworkInfo` class for connectivity checking in `lib/core/network/network_info.dart`
-- [ ] T010 Implement Supabase client initialization and singleton in `lib/core/network/supabase_client.dart` using flutter_dotenv for URL and anon key
-- [ ] T011 [P] Create app-wide constants (colors, gradients, spacing, border radius) in `lib/core/constants/app_colors.dart` and `lib/core/constants/app_theme.dart` — dark mode with neon/gradient accents
-- [ ] T012 [P] Create `AppTheme` with dark mode `ThemeData` (card-based layout, rounded corners, shadows) in `lib/core/constants/app_theme.dart`
-- [ ] T013 Configure GetIt service locator root in `lib/core/di/injection_container.dart` with initialization function `initDependencies()`
-- [ ] T014 Create Supabase database migration files for all 9 tables (users, contacts, groups, group_members, outings, outing_participants, receipt_items, item_splits, debts) with RLS policies and indexes in `supabase/migrations/`
-- [ ] T015 [P] Create Supabase storage buckets (avatars: public read/owner write, receipts: owner read/write) in migration SQL
-- [ ] T016 Create `app.dart` with `MaterialApp`, `GoRouter` or named route setup, and `AppTheme` in `lib/app.dart`
-- [ ] T017 Create `main.dart` entry point that initializes Supabase, Firebase, DI container, and runs the app in `lib/main.dart`
+- [x] T006 Implement base `Failure` classes (ServerFailure, CacheFailure, NetworkFailure, ValidationFailure) in `lib/core/error/failures.dart`
+- [x] T007 [P] Implement base `Exception` classes (ServerException, CacheException) in `lib/core/error/exceptions.dart`
+- [x] T008 [P] Implement `UseCase<Type, Params>` abstract class with `Either<Failure, Type>` return in `lib/core/usecases/usecase.dart`
+- [x] T009 [P] Implement `NetworkInfo` class for connectivity checking in `lib/core/network/network_info.dart`
+- [x] T010 Implement Supabase client initialization and singleton in `lib/core/network/supabase_client.dart` using flutter_dotenv for URL and anon key
+- [x] T011 [P] Create app-wide constants (colors, gradients, spacing, border radius) in `lib/core/constants/app_colors.dart` and `lib/core/constants/app_theme.dart` — dark mode with neon/gradient accents
+- [x] T012 [P] Create `AppTheme` with dark mode `ThemeData` (card-based layout, rounded corners, shadows) in `lib/core/constants/app_theme.dart`
+- [x] T013 Configure GetIt service locator root in `lib/core/di/injection_container.dart` with initialization function `initDependencies()`
+- [x] T014 Create Supabase database migration files for all 9 tables (users, contacts, groups, group_members, outings, outing_participants, receipt_items, item_splits, debts) with RLS policies and indexes in `supabase/migrations/`
+- [x] T015 [P] Create Supabase storage buckets (avatars: public read/owner write, receipts: owner read/write) in migration SQL
+- [x] T016 Create `app.dart` with `MaterialApp`, `GoRouter` or named route setup, and `AppTheme` in `lib/app.dart`
+- [x] T017 Create `main.dart` entry point that initializes Supabase, Firebase, DI container, and runs the app in `lib/main.dart`
 
 **Checkpoint**: Foundation ready — user story implementation can now begin
 
