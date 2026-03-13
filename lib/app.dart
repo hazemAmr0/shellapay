@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'core/constants/app_theme.dart';
 
+import 'features/scan/domain/entities/receipt_item.dart';
+import 'features/scan/presentation/pages/camera_page.dart';
+import 'features/review/presentation/pages/review_page.dart';
+
 class ShellaPayApp extends StatelessWidget {
   ShellaPayApp({super.key});
 
@@ -10,11 +14,15 @@ class ShellaPayApp extends StatelessWidget {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const Scaffold(
-          body: Center(child: Text('ShellaPay Scaffold - Replace with Splash/Login')),
-        ),
+        builder: (context, state) => const CameraPage(),
       ),
-      // Features routes will be added here
+      GoRoute(
+        path: '/review',
+        builder: (context, state) {
+          final items = state.extra as List<ReceiptItem>? ?? [];
+          return ReviewPage(extractedItems: items);
+        },
+      ),
     ],
   );
 

@@ -58,24 +58,24 @@
 
 ### Implementation for User Story 1
 
-- [ ] T018 [P] [US1] Create `ReceiptItem` entity (item_name, price) in `lib/features/scan/domain/entities/receipt_item.dart`
-- [ ] T019 [P] [US1] Create `ReceiptItemModel` (toJson, fromJson, toDomain) in `lib/features/scan/data/models/receipt_item_model.dart`
-- [ ] T020 [US1] Create `ScanRepository` interface (scanReceipt, parseReceipt) in `lib/features/scan/domain/repositories/scan_repository.dart`
-- [ ] T021 [P] [US1] Create `ScanReceipt` use case in `lib/features/scan/domain/usecases/scan_receipt.dart`
-- [ ] T022 [P] [US1] Create `ParseReceipt` use case in `lib/features/scan/domain/usecases/parse_receipt.dart`
-- [ ] T023 [US1] Implement `OcrDataSource` using google_mlkit_text_recognition (on-device, Arabic+English) in `lib/features/scan/data/datasources/ocr_data_source.dart`
-- [ ] T024 [US1] Implement `AiParserRemoteDataSource` that calls Supabase Edge Function `parse-receipt` in `lib/features/scan/data/datasources/ai_parser_remote_data_source.dart`
-- [ ] T025 [US1] Implement `ScanRepositoryImpl` (orchestrate OCR → AI parser → map to entities, handle offline/errors) in `lib/features/scan/data/repositories/scan_repository_impl.dart`
-- [ ] T026 [US1] Deploy `parse-receipt` Supabase Edge Function in `supabase/functions/parse-receipt/index.ts` — accepts raw_text, calls AI API with fixed prompt, returns JSON items
-- [ ] T027 [US1] Implement `ScanBloc` (events: StartScan, ProcessImage; states: Initial, Scanning, OcrComplete, Parsing, Parsed, Error) in `lib/features/scan/presentation/bloc/scan_bloc.dart`
-- [ ] T028 [US1] Create `CameraPage` with guided overlay frame using `image_picker` or `camera` package in `lib/features/scan/presentation/pages/camera_page.dart`
-- [ ] T029 [US1] Create `CameraOverlay` widget with guide frame for receipt alignment in `lib/features/scan/presentation/widgets/camera_overlay.dart`
-- [ ] T030 [US1] Implement `ReviewBloc` (events: EditItem, AddItem, RemoveItem, SetTax, SetService, Confirm; states with editable items list) in `lib/features/review/presentation/bloc/review_bloc.dart`
-- [ ] T031 [US1] Create `ReviewPage` displaying extracted items with inline editing, tax/service fields, and confirm button in `lib/features/review/presentation/pages/review_page.dart`
-- [ ] T032 [P] [US1] Create `EditableItemCard` widget (tap to edit name/price, delete button) in `lib/features/review/presentation/widgets/editable_item_card.dart`
-- [ ] T033 [P] [US1] Create `TaxServiceInput` widget (fields for tax and service amounts) in `lib/features/review/presentation/widgets/tax_service_input.dart`
-- [ ] T034 [US1] Create `ManualEntryForm` widget for fallback when OCR/AI fails (add items manually) in `lib/features/review/presentation/widgets/manual_entry_form.dart`
-- [ ] T035 [US1] Register US1 dependencies (data sources, repository, use cases, blocs) in `lib/core/di/injection_container.dart`
+- [x] T018 [P] [US1] Create `ReceiptItem` entity (item_name, price) in `lib/features/scan/domain/entities/receipt_item.dart`
+- [x] T019 [P] [US1] Create `ReceiptItemModel` (toJson, fromJson, toDomain) in `lib/features/scan/data/models/receipt_item_model.dart`
+- [x] T020 [US1] Create `ScanRepository` interface (scanReceipt, parseReceipt) in `lib/features/scan/domain/repositories/scan_repository.dart`
+- [x] T021 [P] [US1] Create `ScanReceipt` use case in `lib/features/scan/domain/usecases/scan_receipt.dart`
+- [x] T022 [P] [US1] Create `ParseReceipt` use case in `lib/features/scan/domain/usecases/parse_receipt.dart`
+- [x] T023 [US1] Implement `OcrDataSource` using google_mlkit_text_recognition (on-device, Arabic+English) in `lib/features/scan/data/datasources/ocr_data_source.dart`
+- [x] T024 [US1] Implement `AiParserRemoteDataSource` that calls Supabase Edge Function `parse-receipt` in `lib/features/scan/data/datasources/ai_parser_remote_data_source.dart`
+- [x] T025 [US1] Implement `ScanRepositoryImpl` (orchestrate OCR → AI parser → map to entities, handle offline/errors) in `lib/features/scan/data/repositories/scan_repository_impl.dart`
+- [x] T026 [US1] Deploy `parse-receipt` Supabase Edge Function in `supabase/functions/parse-receipt/index.ts` — accepts raw_text, calls AI API with fixed prompt, returns JSON items
+- [x] T027 [US1] Implement `ScanBloc` (events: StartScan, ProcessImage; states: Initial, Scanning, OcrComplete, Parsing, Parsed, Error) in `lib/features/scan/presentation/bloc/scan_bloc.dart`
+- [x] T028 [US1] Create `CameraPage` with guided overlay frame using `image_picker` or `camera` package in `lib/features/scan/presentation/pages/camera_page.dart`
+- [x] T029 [US1] Create `CameraOverlay` widget with guide frame for receipt alignment in `lib/features/scan/presentation/widgets/camera_overlay.dart`
+- [x] T030 [US1] Implement `ReviewBloc` (events: EditItem, AddItem, RemoveItem, SetTax, SetService, Confirm; states with editable items list) in `lib/features/review/presentation/bloc/review_bloc.dart`
+- [x] T031 [US1] Create `ReviewPage` displaying extracted items with inline editing, tax/service fields, and confirm button in `lib/features/review/presentation/pages/review_page.dart`
+- [x] T032 [P] [US1] Create `EditableItemCard` widget (tap to edit name/price, delete button) in `lib/features/review/presentation/widgets/editable_item_card.dart`
+- [x] T033 [P] [US1] Create `TaxServiceInput` widget (fields for tax and service amounts) in `lib/features/review/presentation/widgets/tax_service_input.dart`
+- [x] T034 [US1] Create `ManualEntryForm` widget for fallback when OCR/AI fails (add items manually) in `lib/features/review/presentation/widgets/manual_entry_form.dart`
+- [x] T035 [US1] Register US1 dependencies (data sources, repository, use cases, blocs) in `lib/core/di/injection_container.dart`
 
 **Checkpoint**: User can scan a receipt, see extracted items, edit them, add tax/service, and confirm — fully functional and testable independently
 
