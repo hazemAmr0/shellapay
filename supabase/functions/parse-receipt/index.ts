@@ -1,6 +1,4 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-import { Configuration, OpenAIApi } from "https://esm.sh/openai@3.2.1"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -22,9 +20,14 @@ serve(async (req) => {
       })
     }
 
-    // Initialize OpenAI (Requires OPENAI_API_KEY environment variable set in Supabase)
-    const configuration = new Configuration({ apiKey: Deno.env.get('OPENAI_API_KEY') })
-    const openai = new OpenAIApi(configuration)
+    // Google Gemini API Key (Set this in Supabase env variables as GEMINI_API_KEY)
+    const geminiApiKey = Deno.env.get('GEMINI_API_KEY')
+    if (!geminiApiKey) {
+      return new Response(JSON.stringify({ error: 'GEMINI_API_KEY is not set' }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 500,
+      })
+    }
 
     const prompt = `
 Extract the individual line items and their prices from the following raw OCR text of a receipt.
@@ -43,24 +46,32 @@ ${raw_text}
 """
 `
 
-    const response = await openai.createChatCompletion({
-      model: 'gpt-4o-mini', // or 'gpt-3.5-turbo' based on cost/performance
-      messages: [{ role: 'system', content: prompt }],
-      temperature: 0.1,
+    const geminiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`
+
+    const response = await fetch(geminiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{ text: prompt }]
+        }],
+        generationConfig: {
+            temperature: 0.1,
+            responseMimeType: "application/json",
+        }
+      })
     })
 
-    const raw_response = response.data.choices[0].message?.content || ''
+    const responseData = await response.json()
     
-    // Attempt to extract the JSON payload if it is wrapped in markdown
-    let jsonString = raw_response;
-    if (jsonString.includes('```json')) {
-      jsonString = jsonString.split('```json')[1].split('```')[0].trim();
-    } else if (jsonString.includes('```')) {
-      jsonString = jsonString.split('```')[1].split('```')[0].trim();
-    }
-
+    // Extract the raw response text from Gemini
+    const raw_response = responseData.candidates?.[0]?.content?.parts?.[0]?.text || ''
+    
     try {
-      const parsedOutput = JSON.parse(jsonString);
+      // Gemini 1.5 Flash might already return clean JSON if responseMimeType is set
+      const parsedOutput = JSON.parse(raw_response);
       return new Response(JSON.stringify({ items: parsedOutput.items, raw_response }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200,
